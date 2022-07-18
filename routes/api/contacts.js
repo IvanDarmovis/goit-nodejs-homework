@@ -1,18 +1,18 @@
 const express = require("express");
-const controllers = require("../../controllers");
+const dal = require("../../services");
 
 const { requestWrapper } = require("../../helpers");
 
 const router = express.Router();
 
-router.get("/", requestWrapper(controllers.getContacts));
+router.get("/", requestWrapper(dal.getAll));
 
-router.get("/:contactId", requestWrapper(controllers.getById));
+router.get("/:contactId", requestWrapper(dal.getOne));
 
-router.post("/", requestWrapper(controllers.post));
+router.post("/", requestWrapper(dal.post));
 
-router.delete("/:contactId", requestWrapper(controllers.remove));
+router.delete("/:contactId", requestWrapper(dal.remove));
 
-router.put("/:contactId", requestWrapper(controllers.put));
+router.put("/:contactId", requestWrapper(dal.put));
 
 module.exports = router;
