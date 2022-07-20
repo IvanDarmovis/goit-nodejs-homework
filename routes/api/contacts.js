@@ -15,4 +15,6 @@ router.delete("/:contactId", requestWrapper(dal.remove));
 
 router.put("/:contactId", requestWrapper(dal.put));
 
+router.patch("/:contactId/favorite", requestWrapper(dal.patch));
+
 module.exports = router;
