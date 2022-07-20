@@ -1,25 +1,18 @@
-const express = require('express')
+const express = require("express");
+const dal = require("../../services");
 
-const router = express.Router()
+const { requestWrapper } = require("../../helpers");
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+const router = express.Router();
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/", requestWrapper(dal.getAll));
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/:contactId", requestWrapper(dal.getOne));
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.post("/", requestWrapper(dal.post));
 
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.delete("/:contactId", requestWrapper(dal.remove));
 
-module.exports = router
+router.put("/:contactId", requestWrapper(dal.put));
+
+module.exports = router;
