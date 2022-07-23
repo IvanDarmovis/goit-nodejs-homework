@@ -1,20 +1,20 @@
 const express = require("express");
-const dal = require("../../services");
+const { contacts } = require("../../services");
 
 const { requestWrapper } = require("../../helpers");
 
 const router = express.Router();
 
-router.get("/", requestWrapper(dal.getAll));
+router.get("/", requestWrapper(contacts.getAll));
 
-router.get("/:contactId", requestWrapper(dal.getOne));
+router.get("/:contactId", requestWrapper(contacts.getOne));
 
-router.post("/", requestWrapper(dal.post));
+router.post("/", requestWrapper(contacts.post));
 
-router.delete("/:contactId", requestWrapper(dal.remove));
+router.delete("/:contactId", requestWrapper(contacts.remove));
 
-router.put("/:contactId", requestWrapper(dal.put));
+router.put("/:contactId", requestWrapper(contacts.put));
 
-router.patch("/:contactId/favorite", requestWrapper(dal.patch));
+router.patch("/:contactId/favorite", requestWrapper(contacts.patch));
 
 module.exports = router;
