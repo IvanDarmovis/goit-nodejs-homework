@@ -1,5 +1,5 @@
-const { createError } = require("../helpers");
-const { Contact, joiSchema } = require("../models/contacts");
+const { createError } = require("../../helpers");
+const { Contact, joiSchema } = require("../../models/contacts");
 
 const post = async (req, res) => {
   const { error } = joiSchema.validate(req.body);

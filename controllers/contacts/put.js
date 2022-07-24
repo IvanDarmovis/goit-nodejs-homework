@@ -1,5 +1,5 @@
-const { createError } = require("../helpers");
-const { Contact, joiSchema } = require("../models/contacts");
+const { createError } = require("../../helpers");
+const { Contact, joiSchema } = require("../../models/contacts");
 
 const put = async (req, res) => {
   const { contactId } = req.params;
