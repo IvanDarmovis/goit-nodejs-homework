@@ -1,6 +1,7 @@
 const { User, joiUserSchema } = require("../../models/users");
 const { createError } = require("../../helpers");
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
 
 const signup = async (req, res) => {
   const { error } = joiUserSchema.validate(req.body);
@@ -11,7 +12,12 @@ const signup = async (req, res) => {
   if (user) throw createError(409, "Email in use");
 
   const pass = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  const { subscription } = await User.create({ email, password: pass });
+  const avatarURL = gravatar.url(email);
+  const { subscription } = await User.create({
+    email,
+    password: pass,
+    avatarURL
+  });
 
   res.status(201).json({
     user: {
