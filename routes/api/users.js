@@ -23,9 +23,13 @@ router.post("/signup", requestWrapper(users.signup));
 
 router.post("/signin", requestWrapper(users.signin));
 
+router.post("/verify", requestWrapper(users.reSendVerify));
+
 router.get("/logout", auth, requestWrapper(users.logout));
 
 router.get("/current", auth, requestWrapper(users.current));
+
+router.get("/verify/:verificationToken", requestWrapper(users.verify));
 
 router.patch("/", auth, requestWrapper(users.patch));
 

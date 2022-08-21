@@ -14,6 +14,8 @@ const signin = async (req, res) => {
   if (!user || !bcrypt.compareSync(password, user.password))
     throw createError(401, "Email or password is wrong");
 
+  if (!user.verify) throw createError(401, "Email not verified");
+
   const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
   await User.findOneAndUpdate({ token });
 
